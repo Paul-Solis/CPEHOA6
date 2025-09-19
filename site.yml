@@ -21,6 +21,14 @@
   become: true
   tasks:
 
+    - name: copy default html file for site
+      copy:
+        src: default_site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
     - name: install apache and php for Ubuntu servers
       tags: apache,apache2,ubuntu
       apt:
@@ -80,6 +88,5 @@
         state: started
         enabled: yes
       when: ansible_distribution == "CentOS"
-
 
 
